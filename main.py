@@ -23,7 +23,7 @@ async def main():
     _logger.info(f"Start hash: {start_hash}")
 
     # wait a few seconds, so we have some data..
-    time.sleep(4)
+    time.sleep(8)
 
     blocks = await client.request("getBlocksRequest",
                                   {"lowHash": start_hash,
