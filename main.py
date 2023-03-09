@@ -57,6 +57,19 @@ async def main():
     and vspc getVirtualSelectedParentChainFromBlockRequest: startHash = last_known_vscp_block
     """
 
+    # check confirmations the last accepting block
+    time.sleep(10)
+
+    # get current VSPC blue score
+    blue_score_resp = await client.request("getVirtualSelectedParentBlueScoreRequest", {})
+    blue_score = blue_score_resp["getVirtualSelectedParentBlueScoreResponse"]["blueScore"]
+
+    # get block blue score
+    block_resp = await client.request("getBlockRequest", {"hash": last_known_vscp_block})
+    block_blue_score = block_resp["getBlockResponse"]["block"]["header"]["blueScore"]
+
+    print(f"\nBlock {last_known_vscp_block} has now {int(blue_score) - int(block_blue_score)} confirmations.")
+
 
 if __name__ == '__main__':
     asyncio.run(main())
