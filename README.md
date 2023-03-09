@@ -3,7 +3,6 @@
 Run main.py it shows you the following output:
 
 ```commandline
-C:\Python39\python.exe C:/git/kaspa-check-txs-example/main.py 
 New block found: ef284c9e59cc46eb264fac607d92298b28a7b134a05b79db706670ff8f4a363c
 TXs in block: ['ed40e88111c3a88c30060e457b8eeb487810670355f056b18946c69f77058857', '53a2879da93466a89790f511e055ac14c85bd1a61f95d719eb4dea34e6fe09d5']
 New block found: f59d0edbfec8df44e682fa9aa2622768c8bea0306916f9d3d5c5fe5a76268302
