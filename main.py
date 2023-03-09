@@ -1,30 +1,14 @@
 import asyncio
 import logging
-import os
 import time
 
 from kaspad.KaspadMultiClient import KaspadMultiClient
 
-logging.basicConfig(format="%(asctime)s::%(levelname)s::%(name)s::%(message)s",
-                    level=logging.ERROR,
-                    handlers=[
-                        logging.StreamHandler()
-                    ]
-                    )
-
 # get file logger
+logging.basicConfig(format="%(asctime)s::%(levelname)s::%(name)s::%(message)s", level=logging.ERROR,
+                    handlers=[logging.StreamHandler()])
 _logger = logging.getLogger(__name__)
-
-kaspad_hosts = []
-
-for i in range(100):
-    try:
-        kaspad_hosts.append(os.environ[f"KASPAD_HOST_{i + 1}"].strip())
-    except KeyError:
-        break
-
-if not kaspad_hosts:
-    raise Exception('Please set at least KASPAD_HOST_1 environment variable.')
+kaspad_hosts = ["seeder2.kaspad.net:16110"]
 
 
 async def main():
@@ -66,10 +50,12 @@ async def main():
         # note: you only can set TXs as valid, if you know the TX already. So you need to execute
         # getBlocks BEFORE getVirtualSelectedParentChainFromBlockRequest
 
-    # start again with:
-    # read next blocks with
-    # lowHash = blocks["getBlocksResponse"]["blocks"][-1]["verboseData"]["hash"]
-    # and vspc getVirtualSelectedParentChainFromBlockRequest: startHash = last_known_vscp_block
+    """
+    start again with:
+    read next blocks with
+    lowHash = blocks["getBlocksResponse"]["blocks"][-1]["verboseData"]["hash"]
+    and vspc getVirtualSelectedParentChainFromBlockRequest: startHash = last_known_vscp_block
+    """
 
 
 if __name__ == '__main__':
